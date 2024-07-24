@@ -1,8 +1,8 @@
-// src/models.rs
-use serde::{Deserialize, Serialize}; // Ensure both are imported
-use std::fmt::Debug; // Import the Debug trait
 
-#[derive(Deserialize, Serialize, Debug)] // Ensure Debug and Serialize are derived
+use serde::{Deserialize, Serialize}; 
+use std::fmt::Debug; 
+
+#[derive(Deserialize, Serialize, Debug)] 
 pub struct Article {
     pub source: Source,
     pub author: Option<String>,
@@ -14,15 +14,15 @@ pub struct Article {
     pub content: Option<String>,
 }
 
-#[derive(Debug, Deserialize, Serialize)] // Add Serialize here
+#[derive(Debug, Deserialize, Serialize)] 
 pub struct Source {
     pub id: Option<String>,
     pub name: String,
 }
 
-#[derive(Deserialize, Serialize, Debug)] // Ensure Debug and Serialize are derived
+#[derive(Deserialize, Serialize, Debug)] 
 pub struct NewsResponse {
     pub status: String,
     pub total_results: Option<u32>,
-    pub articles: Vec<Article>, // Make this field public
+    pub articles: Vec<Article>, 
 }

@@ -1,4 +1,4 @@
-// src/handlers.rs
+
 use crate::model::{Article, NewsResponse};
 
 use warp::{Rejection, Reply};
@@ -28,11 +28,11 @@ pub async fn fetch_news() -> Result<Vec<Article>, Rejection> {
     };
     println!("API key obtained: {}", api_key);
 
-    // Construct URL
+    
     let url = format!("https://newsapi.org/v2/top-headlines?country=us&apiKey={}", api_key);
     println!("Request URL: {}", url);
 
-    // Send request and handle response
+    
     let client = reqwest::Client::new();
     let response = match client.get(&url)
         .header("User-Agent", "my-app") // Set User-Agent header
@@ -48,7 +48,7 @@ pub async fn fetch_news() -> Result<Vec<Article>, Rejection> {
         }
     };
 
-    // Print raw JSON response for debugging
+   
     let body = match response.text().await {
         Ok(body) => body,
         Err(e) => {
@@ -61,7 +61,7 @@ pub async fn fetch_news() -> Result<Vec<Article>, Rejection> {
 
     // println!("Raw response body: {}", body);
 
-    // Deserialize JSON response
+
     let json_response = match serde_json::from_str::<NewsResponse>(&body) {
         Ok(res) => res,
         Err(e) => {
